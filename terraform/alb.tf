@@ -14,7 +14,7 @@ resource "aws_security_group" "sglb-614" {
 
   // Egress rule for all ports
   egress {
-    from_port   
+    from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
@@ -86,4 +86,3 @@ resource "aws_lb_target_group_attachment" "lbtgattachjenkins-614" {
   target_group_arn = aws_lb_target_group.lbtgjenkins-614.arn
   target_id        = aws_instance.jenkins-614.id
   port             = 8080
-}
