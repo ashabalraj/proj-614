@@ -1,4 +1,4 @@
-#output file to show public and private subnets created, public IP's of EC2 instances 
+#Output file to show public and private subnets created, public IP's of EC2 instances and ALB DNS names
 
 output "vpc_public_subnets" {
   description = "IDs of the VPC's public subnets"
@@ -12,15 +12,19 @@ output "vpc_private_subnets" {
 
 output "ec2_instance_public_ips" {
   description = "Public IP addresses of EC2 instances"
-  value       = [aws_instance.bastion-614.public_ip] 
+  value       = [aws_instance.bastion-614.public_ip]
 }
 
 output "ec2_instance_private_ips" {
   description = "Public IP addresses of EC2 instances"
-  value       = [aws_instance.bastion-614.private_ip, aws_instance.jenkins-614.private_ip, aws_instance.app-614.private_ip ] 
+  value       = [aws_instance.bastion-614.private_ip, aws_instance.jenkins-614.private_ip, aws_instance.app-614.private_ip]
 }
 
-output "ALB_DNS" {
+output "ALB_APP_DNS" {
   description = "DNS of Load Balancer"
-  value       = [aws_lb.lb-614.DNS]
+  value       = [aws_lb.lbapp-614.dns_name]
 }
+
+output "ALB_JENKINS_DNS" {
+  description = "DNS of Load Balancer"
+  value       = [aws_lb.lbjenkins-614.dns_name]
